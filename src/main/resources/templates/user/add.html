@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+  <div class="container">
+    <div th:if="${validationError}" th:each="error : ${validationError}">
+      <label class="text-danger" th:text="${error}"></label>
+    </div>
+    <h1>Sign Up</h1>
+    <form th:action="@{/user/create}" th:object="${userRequest}" th:method="post">
+      <div class="form-group">
+        <label>username：<span class="text-danger"></span></label>
+        <input type="text" th:field="*{name}" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>password：</label>
+        <input type="password" th:field="*{pass}" class="form-control">
+      </div>
+        <input type="submit" value="Sign Up" class="btn btn-primary">
+    </form>
+    <form th:action="@{/top}" th:method="get">
+    	<input type="submit" value="Top">
+    </form>
+    
+  </div>
+</body>
+</html>

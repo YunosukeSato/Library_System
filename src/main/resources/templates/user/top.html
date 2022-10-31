@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library System</title>
+  </head>
+  <body>
+    <h1>Welcome to the Library System</h1>
+   <div class="container">
+     <div class="text-center">
+        <h1>Login</h1>
+        <form th:method="post" th:action="@{/login}" th:object="${loginRequest}">
+<!--             /* Error message */
+            <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+                th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"> -->
+<!--                 Login error message</p> -->
+            <label>Username</label> <input type="text" th:field="*{name}" /><br /> <br />
+            <label>Password</label> <input type="password" th:field="*{pass}" /><br />
+            <br />
+            <input class="btn btn-primary" type="submit" value="Login"></input>
+        </form>
+    </div>
+         <form action="/user/add" method="get">
+      <input type="submit" value="Sign Up" />
+      </form>
+    
+    </div>
+  </body>
+</html>

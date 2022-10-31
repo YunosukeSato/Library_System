@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Main page for admin</title>
+</head>
+<body>
+<h1>Main page (for admin)</h1>
+<div class="container-fluid">
+  <div class="search m-2">
+    <form th:action="@{/adminSearch}" th:object="${bookForm}" th:method="get">
+      <div class="row">
+        <div class="form-group col-3 m-2">
+        <label>Book Name</label>
+        <input type="text" th:field="*{name}" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1 m-1">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+<form th:action="@{/addBook}" th:object="${bookForAdd}" th:method="post">
+  <label>Book Name</label>
+  <input type="text" th:field="*{name}" /><br>
+  <label>Author Name</label>
+  <input type="text" th:field="*{author}" /><br>
+  <label>URL</label>
+  <input type="text" th:field="*{url}" /><br>
+  <input type="submit" value="Register"></input>
+</form>
+    <form th:action="@{/top}" th:method="get">
+    	<input type="submit" value="Top">
+    </form>
+    <form th:action="@{/deleteBook}" th:object="${bookForm}" th:method="post">
+  <label>Book Name</label>
+  <input type="text" th:field="*{name}" /><br>
+  <input type="submit" value="Delete"></input>
+</form>
+    <form th:action="@{/top}" th:method="get">
+    	<input type="submit" value="Logout">
+    </form>
+     <table>
+      <thead>
+        <tr>
+          <th>Book Title</th>
+          <th>Author</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="book : ${allBooks}">
+          <td th:text="*{book.bookName}"></td>
+          <td th:text="*{book.author}"></td>
+          <td th:text="*{book.url}"></td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>
